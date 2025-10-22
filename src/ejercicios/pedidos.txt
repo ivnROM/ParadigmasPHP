@@ -1,0 +1,10 @@
+Pedido de pizzas
+Cliente: Ivan
+Dirección: 342
+
+Detalles del pedido:
+- Jamón y Queso: 12 unidad(es)
+- Napolitana: 3 unidad(es)
+- Muzzarella: 5 unidad(es)
+
+---------------------------
