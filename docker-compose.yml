@@ -1,0 +1,30 @@
+services:
+  app:
+    build: .
+    container_name: guiaphp_app
+    ports:
+      - "8080:80" 
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db 
+    environment:
+      DB_HOST: db
+      DB_NAME: ejerciciosdb
+      DB_USER: j0lines
+      DB_PASS: ejerciciospass
+
+  db:
+    image: mysql:5.7 
+    container_name: guia_php_db
+    volumes:
+      # persistencia de datos para que los datos no se borren al detener el contenedor
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword 
+      MYSQL_DATABASE: ejerciciosdb     
+      MYSQL_USER: j0lines             
+      MYSQL_PASSWORD: ejerciciospass   
+     
+volumes:
+  db_data: 
