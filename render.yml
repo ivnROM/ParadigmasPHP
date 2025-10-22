@@ -1,0 +1,27 @@
+services:
+  # servicio de base de datos (postgresql o mysql)
+  - type: pserv
+    name: ejercicios-db
+    plan: starter 
+    databaseName: ejerciciosdb # nombre de la bd
+    env: mysql
+    
+  # servicio web (php/apache)
+  - type: web
+    name: guia-php-web
+    env: docker
+    dockerContext: . # Ruta Dockerfile
+    plan: starter
+    port: 80 
+    
+    startCommand: "apache2-foreground"
+    
+    # Variables de Entorno
+    envVars:
+      - key: APACHE_DOCUMENT_ROOT
+        value: /var/www/html 
+      - key: DATABASE_URL
+        fromService:
+          type: pserv
+          name: ejercicios-db
+          property: connectionString
